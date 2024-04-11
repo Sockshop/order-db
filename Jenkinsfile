@@ -4,7 +4,7 @@ pipeline {
         DOCKER_IMAGE_ORDERS_DB = "orders-db"
         DOCKER_TAG = "${BUILD_ID}"
         BUILD_AGENT  = ""
-        NAMESPACE = credentials("NAMESPACE")
+        NAMESPACE = credentials('NAMESPACE')
     }
 agent any
     stages {
@@ -37,7 +37,7 @@ agent any
                 AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
                 AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
                 AWSREGION = "eu-west-3"
-                EKSCLUSTERNAME = credentials("EKS_CLUSTER")
+                EKSCLUSTERNAME = credentials('EKS_CLUSTER')
             }
             steps {
                 script {
@@ -58,8 +58,8 @@ agent any
                             echo "Namespace '${env.NAMESPACE}' already exists."
                         } else {
                             // Create the namespace
-                            sh "kubectl create namespace ${env.NAMESPACE}"
-                            echo "Namespace '${env.NAMESPACE}' created."
+                            sh 'kubectl create namespace ${env.NAMESPACE}'
+                            echo 'Namespace '${env.NAMESPACE}' created.'
                         }                              
                         
                         sh 'kubectl apply -f ./statefulset.yaml -n $NAMESPACE'
