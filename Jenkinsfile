@@ -53,7 +53,7 @@ agent any
                         sh 'aws configure set region $AWSREGION'
                         sh 'aws eks update-kubeconfig --name $EKSCLUSTERNAME --region $AWSREGION --kubeconfig .kube/config'
                         // Check if the namespace exists
-                        if (NAMESPACE = credentials('NAMESPACE')) {
+                        if (NAMESPACE == credentials('NAMESPACE')) {
                             echo "Namespace '$NAMESPACE' already exists."
                         } else {
                             // Create the namespace
