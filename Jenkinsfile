@@ -59,7 +59,7 @@ agent any
                         } else {
                             // Create the namespace
                             sh 'kubectl create namespace $NAMESPACE'
-                            echo "Namespace '$NAMESPACE' created."
+                            echo "Namespace $NAMESPACE created."
                         }             
                         
                         sh 'kubectl apply -f ./statefulset.yaml -n $NAMESPACE'
