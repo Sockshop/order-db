@@ -53,8 +53,7 @@ agent any
                         sh 'aws configure set region $AWSREGION'
                         sh 'aws eks update-kubeconfig --name $EKSCLUSTERNAME --region $AWSREGION --kubeconfig .kube/config'
                         // Check if the namespace exists
-                        // Check if the namespace exists
-                        def namespaceExists = sh('kubectl get namespace $NAMESPACE, returnStatus: true')
+                        def namespaceExists = sh('kubectl get namespace $NAMESPACE', returnStatus: true)
                         if (namespaceExists == 0) {
                             echo 'Namespace $NAMESPACE already exists.'
                         } else {
